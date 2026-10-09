@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Feliz Día del Hombre · El legado del 10</title>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --night:#050b18; --navy:#0a1a33; --sky:#75aadb; --sky2:#a9cdf0;
+  --gold:#f6b40e; --gold2:#ffd96a; --paper:#f6f1e4; --ink:#0a1a33;
+  --script:'Great Vibes','Brush Script MT',cursive; --serif:'Lora',Georgia,serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--night);color:#fff;font-family:var(--serif);overflow-x:hidden}
+svg{display:block}
+.wrap{max-width:520px;margin:0 auto;padding:0 24px}
+.script{font-family:var(--script);font-weight:400;color:var(--gold);line-height:.95}
+.sky-bg{background:
+  radial-gradient(ellipse 60% 30% at 15% 0,rgba(117,170,219,.28),transparent 70%),
+  radial-gradient(ellipse 60% 30% at 85% 0,rgba(246,180,14,.14),transparent 70%),
+  linear-gradient(180deg,#07122a,var(--night) 60%)}
+.stars{position:absolute;inset:0;pointer-events:none;background-image:
+  radial-gradient(1.5px 1.5px at 12% 18%,#fff8,transparent),radial-gradient(1.5px 1.5px at 78% 12%,#fff8,transparent),
+  radial-gradient(1px 1px at 30% 60%,#fff6,transparent),radial-gradient(1.5px 1.5px at 90% 70%,#fff7,transparent),
+  radial-gradient(1px 1px at 55% 35%,#fff6,transparent),radial-gradient(1px 1px at 8% 85%,#fff6,transparent)}
+section{position:relative;padding:72px 0;overflow:hidden}
+
+/* ---------- INTRO ---------- */
+#intro{position:fixed;inset:0;z-index:50;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:24px;transition:opacity .9s,transform .9s}
+#intro.gone{opacity:0;transform:scale(1.06);pointer-events:none}
+.t1{font-size:clamp(46px,13vw,64px)}
+.t2{font-size:clamp(72px,22vw,108px);margin-top:-6px}
+.sub{font-family:var(--script);color:var(--sky2);font-size:clamp(24px,7vw,32px);margin:10px 0 22px}
+.names{display:flex;gap:28px;justify-content:center;font-size:12px;color:#c9d6ea;margin-bottom:6px}
+.names b{display:block;font-family:var(--script);font-weight:400;font-size:28px;color:var(--gold2);margin-top:2px}
+.shirt{width:min(62vw,250px);margin:8px auto 22px;animation:float 3.2s ease-in-out infinite;filter:drop-shadow(0 18px 30px rgba(117,170,219,.35))}
+@keyframes float{50%{transform:translateY(-10px) rotate(-1.5deg)}}
+.btn{border:0;cursor:pointer;font:600 15px var(--serif);color:var(--ink);padding:14px 34px;border-radius:999px;
+  background:linear-gradient(135deg,var(--gold2),var(--gold));box-shadow:0 8px 28px rgba(246,180,14,.4);
+  text-decoration:underline;text-underline-offset:4px;transition:transform .2s}
+.btn:hover{transform:scale(1.05)} .btn:focus-visible{outline:3px solid #fff;outline-offset:3px}
+
+/* ---------- SOBRE ---------- */
+.center{text-align:center}
+.h-script{font-size:clamp(52px,15vw,76px)}
+.lead{font-family:var(--script);color:var(--sky2);font-size:clamp(24px,7vw,30px);line-height:1.15;max-width:360px;margin:12px auto 0}
+.scene{position:relative;height:330px;margin-top:38px}
+.signal{position:absolute;right:-6px;top:-20px;width:130px;height:130px;border-radius:50%;
+  background:radial-gradient(circle,#ffe58a,var(--gold) 55%,transparent 72%);display:grid;place-items:center;
+  font:900 54px var(--serif);color:var(--navy);box-shadow:0 0 70px rgba(246,180,14,.5);transform:rotate(-12deg)}
+.env{position:absolute;left:50%;bottom:0;width:min(300px,78vw);height:200px;transform:translateX(-50%);cursor:pointer;background:none;border:0;color:inherit}
+.env:focus-visible{outline:3px solid var(--gold);outline-offset:6px}
+.env .back{position:absolute;inset:0;background:#10223f;border-radius:6px;border:1px solid #27406a}
+.env .card{position:absolute;left:12px;right:12px;bottom:14px;height:150px;background:var(--paper);color:var(--ink);
+  border-radius:8px;padding:18px 16px;font:italic 15px/1.45 var(--serif);transition:transform .9s .35s cubic-bezier(.2,.8,.2,1);z-index:2}
+.env .front{position:absolute;inset:0;z-index:3;pointer-events:none;
+  background:linear-gradient(135deg,transparent 49.5%,#16305a 50%) left/50% 100% no-repeat,
+             linear-gradient(225deg,transparent 49.5%,#16305a 50%) right/50% 100% no-repeat;border-radius:6px}
+.env .flap{position:absolute;top:0;left:0;right:0;height:112px;z-index:4;background:#1d3a69;
+  clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top;transition:transform .6s,z-index 0s .3s}
+.env .seal{position:absolute;left:50%;top:78px;width:74px;transform:translateX(-50%);z-index:5;transition:opacity .4s,transform .4s}
+.env.open .flap{transform:rotateX(180deg);z-index:1}
+.env.open .card{transform:translateY(-120px)}
+.env.open .seal{opacity:0;transform:translateX(-50%) scale(.4)}
+.hint{margin-top:18px;font-size:13px;color:#9db4d6}
+
+/* ---------- FIGURA / FOTOS ---------- */
+.slot{position:relative;width:min(300px,80vw);margin:0 auto}
+.slot img.ph{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:18px;border:2px solid var(--gold)}
+.slot .glow{position:absolute;inset:8% 6%;background:radial-gradient(circle,rgba(117,170,219,.55),transparent 65%);filter:blur(28px)}
+.slot svg{position:relative}
+.cap{margin-top:26px;font-family:var(--script);font-size:clamp(34px,10vw,46px);color:var(--sky2);line-height:1.05}
+.cap em{color:var(--gold);font-style:normal}
+.strip{display:none;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:34px}
+.strip.on{display:grid}
+.strip img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:12px;border:1.5px solid var(--gold);display:none}
+.strip img.ok{display:block}
+
+/* ---------- DIPLOMA ---------- */
+.dip{background:var(--paper);color:var(--ink);padding:14px;border-radius:4px;box-shadow:0 30px 60px #000a;position:relative;margin-top:34px}
+.dip-in{border:3px double #b88a1b;padding:34px 24px 26px;text-align:center;
+  background:radial-gradient(circle at 50% 0,#fff,transparent 70%)}
+.dip small{letter-spacing:6px;font-size:13px;color:#4a5f82}
+.dip h2{font:600 clamp(21px,6vw,26px)/1.15 var(--serif);letter-spacing:2px;margin:6px 0 10px;color:#1a4f8f}
+.dip .para{font-family:var(--script);font-size:50px;color:var(--ink);line-height:1.1}
+.dip ul{text-align:left;list-style:none;margin:14px 0;font-size:15px;line-height:1.5}
+.dip li{padding-left:22px;position:relative;margin-bottom:8px}
+.dip li::before{content:"⚽";position:absolute;left:0;font-size:12px;top:3px}
+.dip .firma{border-top:1px solid #8a97ad;padding-top:8px;margin-top:20px;font-size:12px;color:#4a5f82}
+.dip .firma b{display:block;font-family:var(--script);font-weight:400;font-size:30px;color:var(--ink)}
+.medal{position:absolute;left:50%;top:-30px;transform:translateX(-50%);width:64px;height:64px;border-radius:50%;
+  background:radial-gradient(circle at 35% 30%,var(--gold2),#c88e00);display:grid;place-items:center;font:900 24px var(--serif);color:var(--navy);
+  border:3px solid #fff;box-shadow:0 8px 20px #0007}
+
+/* ---------- CARTA ---------- */
+.letter{background:var(--sky);color:var(--ink);border-radius:6px;padding:34px 24px 30px;position:relative;box-shadow:0 30px 60px #000a;
+  background-image:repeating-linear-gradient(90deg,#fff2 0 28px,transparent 28px 56px)}
+.letter .head{font-family:var(--script);font-size:38px;color:var(--navy);margin-bottom:14px}
+.letter p{font-size:15.5px;line-height:1.65;margin-bottom:14px;text-align:justify;hyphens:auto}
+.letter .end{font-style:italic;font-weight:600;margin-top:20px}
+.num10{position:absolute;right:16px;top:-26px;width:62px;height:62px;border-radius:50%;background:var(--navy);color:var(--gold);
+  display:grid;place-items:center;font:900 26px var(--serif);border:3px solid var(--gold)}
+
+/* ---------- FINAL ---------- */
+.kick{font:600 13px/1.5 var(--serif);letter-spacing:2px;color:var(--gold);text-transform:uppercase}
+.big{font-size:clamp(66px,20vw,96px);margin:10px 0 28px}
+.fin p{font-family:var(--script);font-size:clamp(30px,9vw,40px);line-height:1.15;color:var(--sky2);margin-top:24px}
+.fin p b{font-weight:400;color:var(--gold)}
+.sig{margin-top:30px;font-size:13px;color:#8fa6cb}
+
+.photo{position:relative;width:min(320px,84vw);aspect-ratio:3/4;margin:0 auto;border-radius:20px;overflow:hidden;
+  border:2px solid var(--gold);box-shadow:0 0 60px rgba(117,170,219,.35),0 25px 50px #000a;background:var(--navy)}
+.photo img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block}
+.fb{position:absolute;inset:0;cursor:pointer;background:radial-gradient(circle at 50% 25%,#1b3a6b,var(--navy))}
+.fb svg{width:100%;height:100%}
+.fb small{position:absolute;bottom:0;left:0;right:0;font-size:11px;color:var(--sky2);background:#0a1a33d9;padding:6px}
+.round{position:relative;width:150px;height:150px;border-radius:50%;overflow:hidden;margin:0 auto;border:3px solid var(--gold);background:var(--navy);box-shadow:0 0 40px rgba(246,180,14,.35)}
+.round img{width:100%;height:100%;object-fit:cover;object-position:center 20%}
+.kick2{font:600 13px var(--serif);letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-bottom:6px}
+.fact{max-width:380px;margin:22px auto 0;color:#c9d6ea;line-height:1.7;font-size:16px}
+.vals{display:grid;gap:14px;margin-top:34px;text-align:left}
+.val{display:flex;gap:16px;align-items:flex-start;padding:16px 18px;border-left:3px solid var(--gold);background:linear-gradient(90deg,rgba(117,170,219,.16),transparent)}
+.val i{font:900 30px/1 var(--serif);color:var(--gold);font-style:normal;min-width:34px}
+.val b{display:block;font:400 30px/1 var(--script);color:var(--sky2);margin-bottom:4px}
+.val span{font-size:15px;line-height:1.55;color:#c9d6ea}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:26px}
+.duo .photo{width:100%;aspect-ratio:3/4;border-radius:14px}
+
+.credit{margin-top:34px;font-size:11px;color:#7f93b5;line-height:1.5}
+.credit a{color:#a9cdf0}
+
+/* ---------- REVEAL ---------- */
+.rv{opacity:0;transform:translateY(24px);transition:opacity .9s,transform .9s}
+.rv.on{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition-duration:.01s!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<!-- Franjas albiceleste reutilizables -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <pattern id="stripes" width="30" height="10" patternUnits="userSpaceOnUse">
+      <rect width="15" height="10" fill="#75aadb"/><rect x="15" width="15" height="10" fill="#fff"/>
+    </pattern>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffe58a"/><stop offset="1" stop-color="#d89a00"/></linearGradient>
+  </defs>
+</svg>
+
+<!-- ===== INTRO ===== -->
+<div id="intro" class="sky-bg">
+  <div class="stars"></div>
+  <div class="script t1" style="position:relative">Feliz día</div>
+  <div class="script t2" style="position:relative">del Hombre</div>
+  <div class="sub" style="position:relative">a los que nunca se rinden…</div>
+  <div class="names" style="position:relative" id="dedic"></div>
+  <svg class="shirt" viewBox="0 0 220 200" role="img" aria-label="Camiseta número 10">
+    <path d="M70 12 Q110 40 150 12 L196 40 L172 84 L154 72 L154 188 L66 188 L66 72 L48 84 L24 40 Z" fill="url(#stripes)" stroke="#fff" stroke-width="2"/>
+    <path d="M70 12 Q110 40 150 12" fill="none" stroke="#0a1a33" stroke-width="5"/>
+    <text x="110" y="148" text-anchor="middle" font-family="Lora,serif" font-weight="900" font-size="78" fill="#0a1a33">10</text>
+    <g fill="url(#gold)"><path d="M110 60l4 9 10 1-7 7 2 10-9-5-9 5 2-10-7-7 10-1z" transform="translate(0,-4) scale(.9) translate(11,0)"/></g>
+  </svg>
+
+  <button class="btn" id="openBtn" type="button">Abrir regalo</button>
+</div>
+
+<template id="fig"><svg viewBox="0 0 220 360" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+<g fill="url(#gold)"><path d="M90 6h40c0 26-6 40-20 46-14-6-20-20-20-46z"/><rect x="104" y="50" width="12" height="26"/><rect x="94" y="74" width="32" height="12" rx="3"/></g>
+<path d="M74 156L48 118M146 156L172 118" stroke="url(#stripes)" stroke-width="24" stroke-linecap="round"/>
+<path d="M48 118L94 84M172 118L126 84" stroke="#d9a67e" stroke-width="15" stroke-linecap="round"/>
+<circle cx="96" cy="82" r="9" fill="#d9a67e"/><circle cx="124" cy="82" r="9" fill="#d9a67e"/>
+<rect x="99" y="126" width="22" height="16" fill="#d9a67e"/><circle cx="110" cy="112" r="21" fill="#2b1b14"/>
+<path d="M70 142Q110 134 150 142L156 254Q110 262 64 254Z" fill="url(#stripes)"/>
+<text x="110" y="172" text-anchor="middle" font-family="Lora,serif" font-weight="700" font-size="14" letter-spacing="3" fill="#0a1a33">MESSI</text>
+<text x="110" y="238" text-anchor="middle" font-family="Lora,serif" font-weight="900" font-size="72" fill="#0a1a33">10</text>
+<path d="M64 252Q110 262 156 252L162 304H58Z" fill="#0d0d16"/>
+<rect x="74" y="304" width="30" height="46" fill="#d9a67e"/><rect x="116" y="304" width="30" height="46" fill="#d9a67e"/>
+<rect x="74" y="326" width="30" height="20" fill="url(#stripes)"/><rect x="116" y="326" width="30" height="20" fill="url(#stripes)"/>
+<path d="M70 346h38v10H66zM112 346h38l4 10h-42z" fill="#0d0d16"/></svg></template>
+<main>
+
+<!-- ===== SOBRE ===== -->
+<section class="sky-bg center">
+  <div class="stars"></div>
+  <div class="wrap" style="position:relative">
+    <div class="script h-script rv">Feliz día<br>del Hombre</div>
+    <p class="lead rv">No necesitas ganar un Mundial para ser un campeón… ya lo eres cada día.</p>
+    <div class="scene rv">
+      <div class="signal" aria-hidden="true">10</div>
+      <button class="env" id="env" type="button" aria-label="Abrir el sobre" aria-expanded="false">
+        <div class="back"></div>
+        <div class="card">Hoy no celebramos la perfección. Celebramos a quien se levanta, cuida a los suyos y sigue adelante.</div>
+        <div class="front"></div>
+        <div class="flap"></div>
+        <svg class="seal" viewBox="0 0 80 80" aria-hidden="true">
+          <circle cx="40" cy="40" r="35" fill="#0a1a33" stroke="url(#gold)" stroke-width="5"/>
+          <text x="40" y="53" text-anchor="middle" font-family="Lora,serif" font-weight="900" font-size="34" fill="#f6b40e">10</text>
+        </svg>
+      </button>
+    </div>
+    <p class="hint">Toca el sobre para abrirlo ✉️</p>
+  </div>
+</section>
+
+<!-- ===== FOTO + VALORES ===== -->
+<section class="center" style="background:linear-gradient(180deg,var(--night),#081731 50%,var(--night))">
+  <div class="stars"></div>
+  <div class="wrap" style="position:relative">
+    <div class="photo rv"><img data-n="1" alt="Lionel Messi con la camiseta de Argentina"></div>
+    <div class="cap rv">Todo comienza<br><em>creyendo</em></div>
+    <p class="fact rv">De niño enfrentó un problema de crecimiento y aun así no soltó su sueño. Lo que parecía un límite nunca lo detuvo.</p>
+    <div class="vals rv">
+      <div class="val"><i>1</i><div><b>Constancia</b><span>Los grandes logros se construyen entrenando cuando nadie está mirando.</span></div></div>
+      <div class="val"><i>2</i><div><b>Humildad</b><span>Un capitán habla poco y deja que su trabajo hable por él.</span></div></div>
+      <div class="val"><i>3</i><div><b>Resiliencia</b><span>Perdió finales importantes y volvió a intentarlo, hasta levantar la copa en Qatar 2022.</span></div></div>
+      <div class="val"><i>4</i><div><b>Equipo</b><span>Se gana junto a la familia, los amigos y los compañeros que te sostienen.</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MOMENTO ===== -->
+<section class="center sky-bg">
+  <div class="stars"></div>
+  <div class="wrap" style="position:relative">
+    <div class="kick2 rv">La gloria llega</div>
+    <div class="script h-script rv">Nunca dejes<br>de soñar</div>
+    <div class="photo rv" style="margin-top:34px"><img data-n="2" alt="Lionel Messi en el Mundial 2022"></div>
+    <p class="fact rv">Después de años de pruebas duras, la recompensa llegó. Y tú también puedes llegar tan lejos como tu constancia te lleve.</p>
+  </div>
+</section>
+
+<!-- ===== DIPLOMA ===== -->
+<section class="sky-bg">
+  <div class="stars"></div>
+  <div class="wrap" style="position:relative">
+    <div class="dip rv">
+      <div class="medal">10</div>
+      <div class="dip-in">
+        <small>DIPLOMA</small>
+        <h2>AL HOMBRE<br>CAMPEÓN</h2>
+        <small style="letter-spacing:3px">OTORGADO A:</small>
+        <div class="para para-name">Ti</div>
+        <ul>
+          <li>Por levantarte cada mañana, aunque el cansancio pese.</li>
+          <li>Por cuidar y sostener a los tuyos sin pedir nada a cambio.</li>
+          <li>Por enseñar con el ejemplo y no solo con palabras.</li>
+          <li>Por seguir intentando cuando el camino se pone difícil.</li>
+        </ul>
+        <div class="firma"><b>Con admiración</b>Y MUCHO RESPETO</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CARTA ===== -->
+<section class="sky-bg">
+  <div class="wrap" style="position:relative">
+    <div class="letter rv">
+      <div class="num10">10</div>
+      <div class="head">Para el hombre que nunca se rinde</div>
+      <p>Hoy es tu día, y no podía faltar un recordatorio de lo valioso que eres.</p>
+      <p>Muchas veces nadie ve lo que cargas: las madrugadas, las responsabilidades, las dudas que te guardas. Aun así sigues adelante, y eso tiene un valor enorme.</p>
+      <p>No necesitas ganar copas para ser un campeón. Se nota en cómo enfrentas los problemas, en cómo cuidas a los tuyos y en cómo te levantas después de cada caída.</p>
+      <p>Si alguna vez sientes que el partido se complica, recuerda que hasta los mejores del mundo perdieron finales antes de ganar la más importante. Lo que cuenta es seguir jugando.</p>
+      <p class="end">Capitán de tu propia historia.<br>Feliz Día del Hombre 💙</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FINAL ===== -->
+<section class="center fin" style="background:linear-gradient(180deg,var(--night),#081731)">
+  <div class="stars"></div>
+  <div class="wrap" style="position:relative">
+    <div class="kick rv">Si Argentina tuvo a su capitán,<br>tú eres el capitán de tu vida</div>
+    <div class="script big rv">Feliz Día<br>del Hombre</div>
+    <div class="round rv"><img data-n="1" alt="Lionel Messi"></div>
+    <p class="rv">No necesitas salvar el mundo… ni ganarlo.<br>Ya eres un <b>campeón</b>.<br>Nunca dejes de creer en ti.</p>
+    <div class="sig rv">Un homenaje al 10 💙</div>
+    <div class="credit rv">Fotos: Wikimedia Commons · Tasnim News Agency (CC BY 4.0).<br>
+      <a href="https://commons.wikimedia.org/wiki/File:Lionel_Messi_-_ARG_vs_MEX_-_FIFA_World_Cup_2022.jpg" target="_blank" rel="noopener">Ver licencia y autor</a></div>
+  </div>
+</section>
+
+</main>
+
+<script>
+/* Dedicatoria opcional por URL:  index.html?para=Papá  */
+const para = new URLSearchParams(location.search).get("para");
+if (para) {
+  document.getElementById("dedic").innerHTML = "Dedicado a:<b class='para'>" + para.replace(/[<>&"]/g, "") + "</b>";
+  document.querySelector(".para-name").textContent = para.replace(/[<>&"]/g, "");
+}
+
+/* Fotos: 1) fotos/messi-N.jpg junto al archivo  2) Wikimedia  3) ilustración + subir tu foto */
+const SRC = {
+  1: ["fotos/messi-1.jpg", "https://upload.wikimedia.org/wikipedia/commons/b/b4/Lionel-Messi-Argentina-2022-FIFA-World-Cup_%28cropped%29.jpg"],
+  2: ["fotos/messi-2.jpg", "https://upload.wikimedia.org/wikipedia/commons/7/7f/Lionel_Messi_-_ARG_vs_MEX_-_FIFA_World_Cup_2022.jpg"]
+};
+function load(img){
+  const list = SRC[img.dataset.n].slice();
+  (function next(){ const u = list.shift(); if(!u) return fb(img); img.onerror = next; img.src = u; })();
+}
+function fb(img){
+  const box = img.parentElement, round = box.classList.contains("round");
+  const d = document.createElement("div"); d.className = "fb";
+  d.appendChild(document.getElementById("fig").content.cloneNode(true));
+  if(round) d.querySelector("svg").setAttribute("preserveAspectRatio","xMidYMin slice");
+  else { const t = document.createElement("small"); t.textContent = "Toca para agregar tu foto"; d.appendChild(t); }
+  const inp = document.createElement("input"); inp.type = "file"; inp.accept = "image/*"; inp.hidden = true;
+  inp.onchange = () => { const f = inp.files[0]; if(!f) return;
+    const n = new Image(); n.alt = "Foto"; n.src = URL.createObjectURL(f); d.replaceWith(n); };
+  d.onclick = () => inp.click(); d.appendChild(inp);
+  img.replaceWith(d);
+}
+document.querySelectorAll("img[data-n]").forEach(load);
+
+const intro = document.getElementById("intro");
+document.body.style.overflow = "hidden";
+document.getElementById("openBtn").addEventListener("click", () => {
+  intro.classList.add("gone");
+  setTimeout(() => { intro.style.display = "none"; document.body.style.overflow = ""; scrollTo(0, 0); }, 900);
+});
+
+const env = document.getElementById("env");
+env.addEventListener("click", () => {
+  const open = env.classList.toggle("open");
+  env.setAttribute("aria-expanded", open);
+});
+
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting) { e.target.classList.add("on"); io.unobserve(e.target); }
+}), { threshold: .15 });
+document.querySelectorAll(".rv").forEach(el => io.observe(el));
+</script>
+</body>
+</html>
